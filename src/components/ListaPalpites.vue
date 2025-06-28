@@ -11,7 +11,8 @@
         &lt;
       </button>
       <div class="bg-primary-100 px-6 py-2 font-medium text-primary-800">
-        Rodada {{ rodadaAtual }}
+        <div v-if="rodadaAtual >= 4">{{ nomeFase }}</div>
+        <div v-else>Rodada {{ rodadaAtual }}</div>
       </div>
       <button
         @click="proximaRodada"
@@ -21,6 +22,13 @@
       >
         &gt;
       </button>
+    </div>
+
+    <!-- Observação para fases eliminatórias -->
+    <div v-if="rodadaAtual >= 4" class="text-center mb-4">
+      <p class="text-sm text-secondary-600 italic">
+        ⚠️ Válido apenas resultado do tempo normal, prorrogação e pênaltis não são considerados
+      </p>
     </div>
 
     <!-- Conteúdo principal -->
@@ -67,6 +75,17 @@ const { user, isAuthenticated, loading: authLoading } = useAuth()
 
 // Toast para notificações
 const toast = useToast()
+
+// Mapear nomes das fases do torneio
+const nomeFase = computed(() => {
+  const fases: Record<number, string> = {
+    4: 'Oitavas de final',
+    5: 'Quartas de final',
+    6: 'Semifinal',
+    7: 'Final',
+  }
+  return fases[rodadaAtual.value]
+})
 
 // Filtrar partidas pela rodada atual
 const partidasFiltradas = computed(() => {
