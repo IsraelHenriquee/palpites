@@ -8,18 +8,21 @@
       <span class="bg-primary-100 text-primary-700 px-3 py-1 rounded-full text-sm font-medium">
         Rodada {{ partida.rodada }}
       </span>
-      <span
-        :class="[
-          'px-3 py-1 rounded-full text-sm font-medium flex items-center',
-          partida.aberto ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700',
-        ]"
-      >
+      <div class="flex items-center space-x-2">
+        <span class="text-xs text-secondary-400 font-mono"> #{{ partida.id_partida }} </span>
         <span
-          class="w-2 h-2 rounded-full mr-1"
-          :class="partida.aberto ? 'bg-green-500' : 'bg-red-500'"
-        ></span>
-        {{ partida.aberto ? 'Aberto' : 'Fechado' }}
-      </span>
+          :class="[
+            'px-3 py-1 rounded-full text-sm font-medium flex items-center',
+            partida.aberto ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700',
+          ]"
+        >
+          <span
+            class="w-2 h-2 rounded-full mr-1"
+            :class="partida.aberto ? 'bg-green-500' : 'bg-red-500'"
+          ></span>
+          {{ partida.aberto ? 'Aberto' : 'Fechado' }}
+        </span>
+      </div>
     </div>
 
     <!-- Conteúdo da Partida -->
